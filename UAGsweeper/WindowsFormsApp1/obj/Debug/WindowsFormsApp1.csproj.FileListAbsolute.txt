@@ -1,0 +1,10 @@
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.Cache
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\CKassab\source\repos\MiSolution\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Canvas.resources
