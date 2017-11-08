@@ -28,22 +28,22 @@ namespace WindowsFormsApp1
             // 
             this.pnlButtons.Location = new System.Drawing.Point(6, 48);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(346, 308);
+            this.pnlButtons.Size = new System.Drawing.Size(201, 205);
             this.pnlButtons.TabIndex = 0;
             // 
             // btn_reinicio
             // 
-            this.btn_reinicio.Location = new System.Drawing.Point(163, 12);
+            this.btn_reinicio.Location = new System.Drawing.Point(92, 12);
             this.btn_reinicio.Name = "btn_reinicio";
             this.btn_reinicio.Size = new System.Drawing.Size(30, 30);
             this.btn_reinicio.TabIndex = 1;
-            this.btn_reinicio.Text = "button1";
+            this.btn_reinicio.Text = "=)";
             this.btn_reinicio.UseVisualStyleBackColor = true;
             this.btn_reinicio.Click += new System.EventHandler(this.button1_Click);
             // 
             // Canvas
             // 
-            this.ClientSize = new System.Drawing.Size(355, 379);
+            this.ClientSize = new System.Drawing.Size(213, 265);
             this.Controls.Add(this.btn_reinicio);
             this.Controls.Add(this.pnlButtons);
             this.Name = "Canvas";
@@ -70,7 +70,7 @@ namespace WindowsFormsApp1
             while (n < 100)
             {
                 btnArray[n].Tag = n + 1; // Tag of button 
-                btnArray[n].Width = 24; // Width of button 
+                btnArray[n].Width = 20; // Width of button 
                 btnArray[n].Height = 20; // Height of button 
                 if (n == 10) // Location of second line of buttons: 
                 {
@@ -143,6 +143,11 @@ namespace WindowsFormsApp1
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public class Celda(int i;)
         {
 
         }
