@@ -58,24 +58,64 @@ namespace WindowsFormsApp1
             int xPos = 0;
             int yPos = 0;
             // Declare and assign number of buttons = 26 
-            System.Windows.Forms.Button[] btnArray = new System.Windows.Forms.Button[26];
+            System.Windows.Forms.Button[] btnArray = new System.Windows.Forms.Button[100];
             // Create (26) Buttons: 
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 100; i++)
             {
                 // Initialize one variable 
                 btnArray[i] = new System.Windows.Forms.Button();
             }
             int n = 0;
 
-            while (n < 26)
+            while (n < 100)
             {
                 btnArray[n].Tag = n + 1; // Tag of button 
                 btnArray[n].Width = 24; // Width of button 
                 btnArray[n].Height = 20; // Height of button 
-                if (n == 13) // Location of second line of buttons: 
+                if (n == 10) // Location of second line of buttons: 
                 {
                     xPos = 0;
-                    yPos = 20;
+                    yPos =  20;
+                }
+                if (n == 20) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 40;
+                }
+                if (n == 30) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 60;
+                }
+                if (n == 40) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 80;
+                }
+                if (n == 50) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 100;
+                }
+                if (n == 60) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 120;
+                }
+                if (n == 70) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 140;
+                }
+                if (n == 80) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 160;
+                }
+                if (n == 90) // Location of second line of buttons: 
+                {
+                    xPos = 0;
+                    yPos = 180;
                 }
                 // Location of button: 
                 btnArray[n].Left = xPos;
@@ -84,7 +124,7 @@ namespace WindowsFormsApp1
                 pnlButtons.Controls.Add(btnArray[n]); // Let panel hold the Buttons 
                 xPos = xPos + btnArray[n].Width; // Left of next button 
                                                  // Write English Character: 
-                btnArray[n].Text = ((char)(n + 65)).ToString();
+                /*btnArray[n].Text = ((char)(n + 65)).ToString();*/
 
             
                 // the Event of click Button 
@@ -102,6 +142,9 @@ namespace WindowsFormsApp1
             MessageBox.Show("You clicked character [" + btn.Text + "]");
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
