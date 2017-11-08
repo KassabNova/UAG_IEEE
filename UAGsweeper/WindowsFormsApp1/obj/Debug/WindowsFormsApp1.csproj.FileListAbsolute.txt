@@ -18,3 +18,12 @@ C:\Users\CKassab\source\repos\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsForms
 C:\Users\CKassab\source\repos\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\CKassab\source\repos\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\CKassab\source\repos\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Canvas.resources
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\LabIntelC18\Source\Repos\UAG_IEEE\UAGsweeper\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.Cache

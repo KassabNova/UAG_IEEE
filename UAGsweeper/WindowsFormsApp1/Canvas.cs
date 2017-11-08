@@ -21,20 +21,32 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.pnlButtons = new System.Windows.Forms.Panel();
+            this.btn_reinicio = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlButtons
             // 
-            this.pnlButtons.Location = new System.Drawing.Point(12, 29);
+            this.pnlButtons.Location = new System.Drawing.Point(6, 48);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(340, 50);
+            this.pnlButtons.Size = new System.Drawing.Size(346, 308);
             this.pnlButtons.TabIndex = 0;
             // 
-            // Form1
+            // btn_reinicio
             // 
-            this.ClientSize = new System.Drawing.Size(355, 99);
+            this.btn_reinicio.Location = new System.Drawing.Point(163, 12);
+            this.btn_reinicio.Name = "btn_reinicio";
+            this.btn_reinicio.Size = new System.Drawing.Size(30, 30);
+            this.btn_reinicio.TabIndex = 1;
+            this.btn_reinicio.Text = "button1";
+            this.btn_reinicio.UseVisualStyleBackColor = true;
+            this.btn_reinicio.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Canvas
+            // 
+            this.ClientSize = new System.Drawing.Size(355, 379);
+            this.Controls.Add(this.btn_reinicio);
             this.Controls.Add(this.pnlButtons);
-            this.Name = "Form1";
+            this.Name = "Canvas";
             this.ResumeLayout(false);
 
         }
@@ -89,5 +101,7 @@ namespace WindowsFormsApp1
             Button btn = (Button)sender;
             MessageBox.Show("You clicked character [" + btn.Text + "]");
         }
+
+       
     }
 }

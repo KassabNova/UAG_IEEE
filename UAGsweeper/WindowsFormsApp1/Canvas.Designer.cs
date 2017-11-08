@@ -21,6 +21,7 @@
         }
 
         private System.Windows.Forms.Panel pnlButtons;
+        private System.Windows.Forms.Button btn_reinicio;
     }
 }
 
