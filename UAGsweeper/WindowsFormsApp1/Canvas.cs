@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         public Canvas()
         {
             InitializeComponent();
-            AddButtons();
+            AddCeldas();
         }
 
         private void InitializeComponent()
@@ -53,93 +53,57 @@ namespace WindowsFormsApp1
 
     
 
-        private void AddButtons()
+        private void AddCeldas()
         {
             int xPos = 0;
             int yPos = 0;
-            // Declare and assign number of buttons = 26 
-            System.Windows.Forms.Button[] btnArray = new System.Windows.Forms.Button[100];
-            // Create (26) Buttons: 
-            for (int i = 0; i < 100; i++)
-            {
+            int row;
+            int col;
+           
+            // Declare and assign number of buttons 
+            System.Windows.Forms.Button[,]btnArray = new System.Windows.Forms.Button[10,10];
+            // Create Buttons: 
+            for ( row = 0; row < 10; row++)
+            {   for(col= 0; col<10;col++)
                 // Initialize one variable 
-                btnArray[i] = new System.Windows.Forms.Button();
+                btnArray[row,col] = new System.Windows.Forms.Button();
             }
-            int n = 0;
-
-            while (n < 100)
+          
+            for ( row = 0;row< 10;row++)
             {
-                btnArray[n].Tag = n + 1; // Tag of button 
-                btnArray[n].Width = 20; // Width of button 
-                btnArray[n].Height = 20; // Height of button 
-                if (n == 10) // Location of second line of buttons: 
+                for (col = 0; col < 10; col++)
                 {
-                    xPos = 0;
-                    yPos =  20;
-                }
-                if (n == 20) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 40;
-                }
-                if (n == 30) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 60;
-                }
-                if (n == 40) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 80;
-                }
-                if (n == 50) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 100;
-                }
-                if (n == 60) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 120;
-                }
-                if (n == 70) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 140;
-                }
-                if (n == 80) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 160;
-                }
-                if (n == 90) // Location of second line of buttons: 
-                {
-                    xPos = 0;
-                    yPos = 180;
-                }
-                // Location of button: 
-                btnArray[n].Left = xPos;
-                btnArray[n].Top = yPos;
-                // Add buttons to a Panel: 
-                pnlButtons.Controls.Add(btnArray[n]); // Let panel hold the Buttons 
-                xPos = xPos + btnArray[n].Width; // Left of next button 
-                                                 // Write English Character: 
-                /*btnArray[n].Text = ((char)(n + 65)).ToString();*/
+                    
+                    // btnArray[row,col].Tag = row + 1; // Tag of button 
+                    btnArray[row,col].Width = 20; // Width of button 
+                    btnArray[row,col].Height = 20; // Height of button 
 
-            
-                // the Event of click Button 
-                btnArray[n].Click += new System.EventHandler(ClickButton);
-                n++;
+                    // Location of button: 
+                    btnArray[row,col].Left = xPos;
+                    btnArray[row,col].Top = yPos;
+
+                    // Add buttons to a Panel: 
+                    pnlButtons.Controls.Add(btnArray[row,col]); // Let panel hold the Buttons 
+                    xPos = xPos + btnArray[row,col].Width; // Left of next button 
+
+                    //Creating 
+                    btnArray[row,col].Click += new System.EventHandler(ClickButton);
+                 
+                }
+                xPos = 0;
+                yPos = yPos + btnArray[row, xPos].Height;
             }
-            /*btnAddButton.Enabled = false;     // not need now to this button now 
-            label1.Visible = true;*/
         }
 
         // Result of (Click Button) event, get the text of button 
         public void ClickButton(Object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
-            MessageBox.Show("You clicked character [" + btn.Text + "]");
+            btn.Text = "@";
+            if (btn.Text == "@")
+            { 
+            MessageBox.Show("You clicked a bomb! Allahu-Akbar!!!!");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -147,9 +111,5 @@ namespace WindowsFormsApp1
 
         }
 
-        public class Celda(int i;)
-        {
-
-        }
     }
 }
