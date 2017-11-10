@@ -16,7 +16,9 @@ namespace WindowsFormsApp1
         int yPos = 0;
         int row;
         int col;
-        
+        Random rnd = new Random();
+
+
         public Canvas()
         {
             InitializeComponent();
@@ -76,15 +78,14 @@ namespace WindowsFormsApp1
             {
                 for (col = 0; col < 10; col++)
                 {
-                    Random rnd = new Random();
-                    int shot = rnd.Next(0,100);
+                    int minaRand = rnd.Next(0,100);
                     btnArray[row,col].Tag = row + 1; // Tag of button 
                     btnArray[row,col].Width = 20; // Width of button 
                     btnArray[row,col].Height = 20; // Height of button 
                     //btnArray[row, col].BackColor = ; // Height of button 
                     // Location of button: 
                     // Adding mines
-                    if (shot < 50)
+                    if (minaRand < 30)
                     {
                         btnArray[row, col].Text = "@";
                     }
@@ -109,8 +110,6 @@ namespace WindowsFormsApp1
         public void ClickButton(Object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
-         
-            //btn.ForeColor = btn.BackColor;
         
             if (btn.Text == "@")
             {
