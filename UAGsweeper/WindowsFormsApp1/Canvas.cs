@@ -12,6 +12,11 @@ namespace WindowsFormsApp1
 {
     public partial class Canvas : Form
     {
+        int xPos = 0;
+        int yPos = 0;
+        int row;
+        int col;
+        
         public Canvas()
         {
             InitializeComponent();
@@ -55,10 +60,7 @@ namespace WindowsFormsApp1
 
         private void AddCeldas()
         {
-            int xPos = 0;
-            int yPos = 0;
-            int row;
-            int col;
+            
            
             // Declare and assign number of buttons 
             System.Windows.Forms.Button[,]btnArray = new System.Windows.Forms.Button[10,10];
@@ -68,17 +70,24 @@ namespace WindowsFormsApp1
                 // Initialize one variable 
                 btnArray[row,col] = new System.Windows.Forms.Button();
             }
-          
+           
+            //Draw to screen
             for ( row = 0;row< 10;row++)
             {
                 for (col = 0; col < 10; col++)
                 {
-                    
-                    // btnArray[row,col].Tag = row + 1; // Tag of button 
+                    Random rnd = new Random();
+                    int shot = rnd.Next(0,100);
+                    btnArray[row,col].Tag = row + 1; // Tag of button 
                     btnArray[row,col].Width = 20; // Width of button 
                     btnArray[row,col].Height = 20; // Height of button 
-
+                    //btnArray[row, col].BackColor = ; // Height of button 
                     // Location of button: 
+                    // Adding mines
+                    if (shot < 50)
+                    {
+                        btnArray[row, col].Text = "@";
+                    }
                     btnArray[row,col].Left = xPos;
                     btnArray[row,col].Top = yPos;
 
@@ -86,9 +95,10 @@ namespace WindowsFormsApp1
                     pnlButtons.Controls.Add(btnArray[row,col]); // Let panel hold the Buttons 
                     xPos = xPos + btnArray[row,col].Width; // Left of next button 
 
+                    
                     //Creating 
                     btnArray[row,col].Click += new System.EventHandler(ClickButton);
-                 
+                    
                 }
                 xPos = 0;
                 yPos = yPos + btnArray[row, xPos].Height;
@@ -99,16 +109,20 @@ namespace WindowsFormsApp1
         public void ClickButton(Object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.Text = "@";
+         
+            //btn.ForeColor = btn.BackColor;
+        
             if (btn.Text == "@")
-            { 
-            MessageBox.Show("You clicked a bomb! Allahu-Akbar!!!!");
+            {
+                btn.Visible = true;
+                MessageBox.Show("You clicked a bomb! Allahu-Akbar!!!!");
+                
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            AddCeldas();
         }
 
     }
