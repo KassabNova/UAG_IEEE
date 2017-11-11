@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         int yPos = 0;
         int row;
         int col;
+        int cuentaMinas;
         Random rnd = new Random();//Random object for mines
 
 
@@ -42,12 +43,12 @@ namespace WindowsFormsApp1
             // btn_reinicio
             // 
             this.btn_reinicio.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_reinicio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_reinicio.Image = ((System.Drawing.Image)(resources.GetObject("btn_reinicio.Image")));
             this.btn_reinicio.Location = new System.Drawing.Point(92, 12);
             this.btn_reinicio.Name = "btn_reinicio";
             this.btn_reinicio.Size = new System.Drawing.Size(30, 30);
             this.btn_reinicio.TabIndex = 1;
-            this.btn_reinicio.Text = "=)";
             this.btn_reinicio.UseVisualStyleBackColor = false;
             this.btn_reinicio.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -119,12 +120,13 @@ namespace WindowsFormsApp1
         public void ClickButton(Object sender, System.EventArgs e)
         {
             Button btn = (Button)sender;
-            btn.Enabled = false;
+            btn.Enabled = true;
            
             if (btn.Text == "_")
             {
                 btn.Visible = true;
                 btn.Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/mina.jpg");
+                btn_reinicio.Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/death.jpg");
                 MessageBox.Show("You clicked a bomb! Allahu-Akbar!!!!");
                 
             }
@@ -141,6 +143,7 @@ namespace WindowsFormsApp1
         private void ResetCeldas()
         {
             pnlButtons.Controls.Clear();
+            btn_reinicio.Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/smile.jpg");
         }
     }
 }
