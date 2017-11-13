@@ -14,10 +14,10 @@ namespace WindowsFormsApp1
     {   //Class variables
         int xPos = 0;
         int yPos = 0;
-        int row;
-        int col;
-        int cuentaMinas;
+        
+       
         Random rnd = new Random();//Random object for mines
+        System.Windows.Forms.Button[,] btnArray = new System.Windows.Forms.Button[10, 10];
 
 
         public Canvas()
@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             this.btn_reinicio.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.btn_reinicio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_reinicio.Image = ((System.Drawing.Image)(resources.GetObject("btn_reinicio.Image")));
-            this.btn_reinicio.Location = new System.Drawing.Point(92, 12);
+            this.btn_reinicio.Location = new System.Drawing.Point(96, 12);
             this.btn_reinicio.Name = "btn_reinicio";
             this.btn_reinicio.Size = new System.Drawing.Size(30, 30);
             this.btn_reinicio.TabIndex = 1;
@@ -64,14 +64,15 @@ namespace WindowsFormsApp1
 
     
 
-        private void AddCeldas()
+        public void AddCeldas()
         {
-
+            int row;
+            int col;
             //Reset X and Y Pos
             xPos = 0;
             yPos = 0;
             // Declare and assign number of buttons 
-            System.Windows.Forms.Button[,]btnArray = new System.Windows.Forms.Button[10,10];
+            
             // Create Buttons: 
             for ( row = 0; row < 10; row++)
             {   for(col= 0; col<10;col++)
@@ -84,20 +85,24 @@ namespace WindowsFormsApp1
             {
                 for (col = 0; col < 10; col++)
                 {
-                    
-                    btnArray[row,col].Tag = row + 1; // Tag of button 
+                    //Sets the button properties
+                    btnArray[row,col].Tag = 0; // Tag of button 
+                    btnArray[row, col].Name = row.ToString() + "," + col.ToString(); // Tag of button 
+
                     btnArray[row,col].Width = 20; // Width of button 
                     btnArray[row,col].Height = 20; // Height of button 
                     btnArray[row, col].Enabled = true;
-                    
                     btnArray[row, col].BackColor= SystemColors.AppWorkspace ; // Color of button 
 
-                    // Adding mines
+                    // Adding mines with a Random object
                     int minaRand = rnd.Next(0, 100);
                     if (minaRand < 22)
                     {
+                        btnArray[row, col].Tag = -1; // Tag of button 
                         btnArray[row, col].Text = "_";
                         btnArray[row, col].ForeColor = SystemColors.ActiveCaptionText;
+                        btnArray[row, col].Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/mina.jpg");
+
                     }
                     btnArray[row,col].Left = xPos;
                     btnArray[row,col].Top = yPos;
@@ -108,7 +113,7 @@ namespace WindowsFormsApp1
 
                     
                     //Creating  event Click handler
-                    btnArray[row,col].Click += new System.EventHandler(ClickButton);
+                    btnArray[row,col].Click += new System.EventHandler(ClickReveal);
                     
                 }
                 xPos = 0;
@@ -116,34 +121,242 @@ namespace WindowsFormsApp1
             }
         }
 
-        // Result of (Click Button) event, get the text of button 
-        public void ClickButton(Object sender, System.EventArgs e)
+        // Result of (Click Button) event, then does the following instructions
+        public void ClickReveal(Object sender, System.EventArgs e)
         {
-            Button btn = (Button)sender;
-            btn.Enabled = true;
            
+            Button btn = (Button)sender;
+            btn.Enabled = false;
+            
             if (btn.Text == "_")
             {
-                btn.Visible = true;
+                //Set images
                 btn.Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/mina.jpg");
                 btn_reinicio.Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/death.jpg");
-                MessageBox.Show("You clicked a bomb! Allahu-Akbar!!!!");
+                clickMina();
+            }
+            else
+            {   
                 
+                string[] buttonLocation = btn.Name.Split(',');
+                int row = Int32.Parse(buttonLocation[0]);
+                int col = Int32.Parse(buttonLocation[1]);
+                CountMina(row,col);
+            }
+            
+            
+        }
+
+        //Reset  Method on Smiley Button
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Reset();
+            btn_reinicio.Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/smile.jpg");
+        }
+
+        private void clickMina()
+        {
+            int row;
+            int col;
+            MessageBox.Show("You clicked a bomb! Allahu-Akbar!!!!");
+            for (row = 0; row < 10; row++)
+            {
+                for (col = 0; col < 10; col++)
+                {
+                    btnArray[row, col].Enabled = false;
+                    if (btnArray[row, col].Text == "_")
+                    {
+                        btnArray[row, col].Enabled = true;
+                        btnArray[row, col].Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/mina.jpg");
+                    }
+                    
+                }
             }
         }
 
-        //Reset and Adding Method on Smiley Button
-        private void button1_Click(object sender, EventArgs e)
+        private void Reset()
         {
-            ResetCeldas();
-            AddCeldas();
+            int row;
+            int col;
+            for (row = 0; row < 10; row++)
+            {
+                for (col = 0; col < 10; col++)
+                {
+                    //resets the button properties
+                    btnArray[row, col].Enabled = true;
+                    btnArray[row, col].Image = null;
+                    btnArray[row, col].Text = ".";
+                    btnArray[row, col].ForeColor= SystemColors.AppWorkspace;
+                    btnArray[row, col].BackColor = SystemColors.AppWorkspace; // Color of button 
+
+                    // Adding mines with a Random object
+                    int minaRand = rnd.Next(0, 100);
+                    if (minaRand < 22)
+                    {
+                        btnArray[row, col].Tag = -1; // Tag of button 
+                        btnArray[row, col].Text = "_";
+                        btnArray[row, col].ForeColor = SystemColors.ActiveCaptionText;
+
+                    }
+                }
+            }
         }
 
-        //Reset Method
-        private void ResetCeldas()
+        private void CountMina(int cmRowVal, int cmColVal)
         {
-            pnlButtons.Controls.Clear();
-            btn_reinicio.Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/smile.jpg");
+            int cmRow = cmRowVal;
+            int cmCol = cmColVal;
+
+            int cuentaMinas = 0;
+            int maxLimit = 9;
+            int minLimit = 0;
+
+            if ((cmRow - 1) >= minLimit && (cmCol + 1) <= maxLimit) //Punto derecho arriba
+            {
+                if (btnArray[cmRow - 1, cmCol + 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            if ((cmCol + 1) <= maxLimit) //Punto derecho
+            {
+                if (btnArray[cmRow, cmCol + 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            if ((cmRow + 1) <= maxLimit && (cmCol + 1) <= maxLimit) //PuntoDerechoAbajo
+            {
+                if (btnArray[cmRow + 1, cmCol + 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            if ((cmRow - 1) >= minLimit && (cmCol - 1) >= minLimit) //PuntoIzquierdoArriba
+            {
+                if (btnArray[cmRow - 1, cmCol - 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            if ((cmCol - 1) >= minLimit) //PuntoIzquierdo
+            {
+                if (btnArray[cmRow, cmCol - 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            if ((cmRow + 1) <= maxLimit && (cmCol - 1) >= minLimit) //PuntoIzquierdoAbajo
+            {
+                if (btnArray[cmRow + 1, cmCol - 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            if ((cmRow - 1) >= minLimit) //PuntoArriba
+            {
+                if (btnArray[cmRow - 1, cmCol].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            if ((cmRow + 1) <= maxLimit) //PuntoAbajo
+            {
+                if (btnArray[cmRow + 1, cmCol].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            //*********************Flood fill ****************************
+            if (cuentaMinas == 0) //Flood fill ****************************
+            {
+                if ((cmRow - 1) >= minLimit && (cmCol + 1) <= maxLimit) //Punto derecho arriba
+                {
+                    if (btnArray[cmRow - 1, cmCol + 1].Enabled == true)
+                    { 
+                        btnArray[cmRow - 1, cmCol + 1].Enabled = false;
+                        btnArray[cmRow - 1, cmCol + 1].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow - 1, cmCol + 1);
+                    }
+                }
+                if ((cmCol + 1) <= maxLimit) //Punto derecho
+                {
+                    if (btnArray[cmRow, cmCol + 1].Enabled == true)
+                    {
+                        btnArray[cmRow, cmCol + 1].Enabled = false;
+                        btnArray[cmRow, cmCol + 1].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow, cmCol + 1);
+                    }
+                }
+                //PuntoDerechoAbajo
+                if ((cmRow + 1) <= maxLimit && (cmCol + 1) <= maxLimit)
+                {
+                    if (btnArray[cmRow + 1, cmCol + 1].Enabled == true)
+                    {
+                        btnArray[cmRow + 1, cmCol + 1].Enabled = false;
+                        btnArray[cmRow + 1, cmCol + 1].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow + 1, cmCol + 1);
+                    }
+                }
+                //PuntoIzquierdoArriba
+                if ((cmRow - 1) >= minLimit && (cmCol - 1) >= minLimit)
+                {
+                    if (btnArray[cmRow - 1, cmCol - 1].Enabled == true)
+                    {
+                        btnArray[cmRow - 1, cmCol - 1].Enabled = false;
+                        btnArray[cmRow - 1, cmCol - 1].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow - 1, cmCol - 1);
+                    }
+                }
+                //PuntoIzquierdo
+                if ((cmCol - 1) >= minLimit)
+                {
+                    if (btnArray[cmRow, cmCol - 1].Enabled == true)
+                    {
+                        btnArray[cmRow, cmCol - 1].Enabled = false;
+                        btnArray[cmRow, cmCol - 1].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow, cmCol - 1);
+                    }
+                }
+                //PuntoIzquierdoAbajo
+                if ((cmRow + 1) <= maxLimit && (cmCol - 1) >= minLimit)
+                {
+                    if (btnArray[cmRow + 1, cmCol - 1].Enabled == true)
+                    {
+                        btnArray[cmRow + 1, cmCol - 1].Enabled = false;
+                        btnArray[cmRow + 1, cmCol - 1].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow + 1, cmCol - 1);
+                    }
+                }
+                //PuntoArriba
+                if ((cmRow - 1) >= minLimit)
+                {
+                    if (btnArray[cmRow - 1, cmCol].Enabled == true)
+                    {
+                        btnArray[cmRow - 1, cmCol].Enabled = false;
+                        btnArray[cmRow - 1, cmCol].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow - 1, cmCol);
+                    }
+                }
+                //PuntoAbajo
+                if ((cmRow + 1) <= maxLimit)
+                {
+                    if (btnArray[cmRow + 1, cmCol].Enabled == true)
+                    {
+                        btnArray[cmRow + 1, cmCol].Enabled = false;
+                        btnArray[cmRow + 1, cmCol].ForeColor = SystemColors.ActiveCaptionText;
+                        CountMina(cmRow + 1, cmCol);
+                    }
+                }
+            }
+            else
+            {
+                btnArray[cmRow, cmCol].Text = cuentaMinas.ToString();
+                btnArray[cmRow, cmCol].ForeColor = SystemColors.ActiveCaptionText;
+            }
+
         }
+        
     }
+    
 }
