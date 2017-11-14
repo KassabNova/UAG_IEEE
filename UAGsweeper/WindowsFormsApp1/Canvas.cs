@@ -102,7 +102,7 @@ namespace WindowsFormsApp1
                         btnArray[row, col].Tag = -1; // Tag of button 
                         btnArray[row, col].Text = "_";
                         btnArray[row, col].ForeColor = SystemColors.ActiveCaptionText;
-                        //btnArray[row, col].Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/mina.jpg");
+                        btnArray[row, col].Image = Image.FromFile("C:/Users/CKassab/source/repos/UAG_IEEE/UAGsweeper/mina.jpg");
 
                     }
                     btnArray[row, col].Left = xPos;
@@ -206,7 +206,7 @@ namespace WindowsFormsApp1
 
                     // Adding mines with a Random object
                     int minaRand = rnd.Next(0, 100);
-                    if (minaRand < 22)
+                    if (minaRand < 15)
                     {
                         btnArray[row, col].Tag = -1; // Tag of button 
                         btnArray[row, col].Text = "_";
@@ -223,66 +223,80 @@ namespace WindowsFormsApp1
         {
             int cmRow = cmRowVal;
             int cmCol = cmColVal;
-
             int cuentaMinas = 0;
             
-
-            if ((cmRow - 1) >= minLimit && (cmCol + 1) <= maxLimit) //Punto derecho arriba
+            //Punto derecho arriba
+            if ((cmRow - 1) >= minLimit && (cmCol + 1) <= maxLimit) 
             {
                 if (btnArray[cmRow - 1, cmCol + 1].Text == "_")
                 {
                     cuentaMinas += 1;
                 }
             }
-            if ((cmCol + 1) <= maxLimit) //Punto derecho
+            
+            //Punto derecho
+            if ((cmCol + 1) <= maxLimit) 
             {
                 if (btnArray[cmRow, cmCol + 1].Text == "_")
                 {
                     cuentaMinas += 1;
                 }
             }
-            if ((cmRow + 1) <= maxLimit && (cmCol + 1) <= maxLimit) //PuntoDerechoAbajo
+            
+            //PuntoDerechoAbajo
+            if ((cmRow + 1) <= maxLimit && (cmCol + 1) <= maxLimit) 
             {
                 if (btnArray[cmRow + 1, cmCol + 1].Text == "_")
                 {
                     cuentaMinas += 1;
                 }
             }
-            if ((cmRow - 1) >= minLimit && (cmCol - 1) >= minLimit) //PuntoIzquierdoArriba
-            {
-                if (btnArray[cmRow - 1, cmCol - 1].Text == "_")
-                {
-                    cuentaMinas += 1;
-                }
-            }
-            if ((cmCol - 1) >= minLimit) //PuntoIzquierdo
-            {
-                if (btnArray[cmRow, cmCol - 1].Text == "_")
-                {
-                    cuentaMinas += 1;
-                }
-            }
-            if ((cmRow + 1) <= maxLimit && (cmCol - 1) >= minLimit) //PuntoIzquierdoAbajo
-            {
-                if (btnArray[cmRow + 1, cmCol - 1].Text == "_")
-                {
-                    cuentaMinas += 1;
-                }
-            }
-            if ((cmRow - 1) >= minLimit) //PuntoArriba
-            {
-                if (btnArray[cmRow - 1, cmCol].Text == "_")
-                {
-                    cuentaMinas += 1;
-                }
-            }
-            if ((cmRow + 1) <= maxLimit) //PuntoAbajo
+
+            //PuntoAbajo
+            if ((cmRow + 1) <= maxLimit) 
             {
                 if (btnArray[cmRow + 1, cmCol].Text == "_")
                 {
                     cuentaMinas += 1;
                 }
             }
+
+            //PuntoIzquierdoAbajo
+            if ((cmRow + 1) <= maxLimit && (cmCol - 1) >= minLimit)
+            {
+                if (btnArray[cmRow + 1, cmCol - 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+
+            //PuntoIzquierdo
+            if ((cmCol - 1) >= minLimit)
+            {
+                if (btnArray[cmRow, cmCol - 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+
+            //PuntoIzquierdoArriba
+            if ((cmRow - 1) >= minLimit && (cmCol - 1) >= minLimit) 
+            {
+                if (btnArray[cmRow - 1, cmCol - 1].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            
+            //PuntoArriba
+            if ((cmRow - 1) >= minLimit) 
+            {
+                if (btnArray[cmRow - 1, cmCol].Text == "_")
+                {
+                    cuentaMinas += 1;
+                }
+            }
+            
             
             //If mine count was 0, then it calls FloodFill method
             if (cuentaMinas == 0) 
